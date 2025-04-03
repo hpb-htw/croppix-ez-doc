@@ -1,10 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Croppix EZ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" href="./assets/croppie-favicon-CSzhuDWh.svg"/>
+    <title>Croppix Ez</title>
+  <script type="module" crossorigin src="./assets/index-39-PI7Y4.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-4l1hNJSh.css">
 </head>
 <body>
+<header>
+    <h1>Croppix Ez – Crop and resize picture easily</h1>
+    A library to crop and resize images in JavaScript | ported from library Croppie to ES-6 module
+</header>
+<main class="container-fluid">
+    <section>
+        <h2>Crop image from an img-tag</h2>
+        <div class="grid">
+            <div>
+                <pre class="language-javascript"><code>/* JavaScript */
+// the container element for rending image
+const container = document.getElementById('demo1');
+const crop = new CroppixEz(container, {
+    // size of the crop window
+    viewport: {width: 300, height: 300},
+    // size reserved to show image
+    boundary: {width: 500, height: 500},
+    // don't show zoom bar
+    showZoomer: false,
+    // allow to change the orientation (<rotated></rotated>)
+    enableOrientation: true
+});
+crop.bind({
+    url: './img/cat.jpg', // path to image file on server
+    orientation: 4,       // rotate image upside-down (s. reference for more)
+    zoom: 0               // initialize the size of the image to the size of the viewport
+});
+document.getElementById("demo1-btn").addEventListener('click', async (ev) => {
+    const blob = await crop.result({type: 'blob'});
+    popupResult({
+        src:window.URL.createObjectURL(blob)
+    });
+});</code></pre>
+                <pre class="language-html"><code>&lt;!-- HTML -->
+&lt;div id="demo1">&lt;/div>
+&lt;button id="demo1-btn">&lt;button></code></pre>
+                <button id="demo1-btn">Get result</button>
+            </div>
+            <div>
+                <div id="demo1"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Circle crop an image</h2>
+        <div class="grid">
+            <div>
+<pre class="language-javascript"><code>/*JavaScript*/
 
+</code></pre>
+<pre class="language-html"><code>
+
+</code></pre>
+            <button id="demo2-btn">Get Result</button>
+            <span id="demo2-zoom">Zoom:</span>
+            </div>
+
+            <div><!-- result -->
+                <div id="demo2"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Rotate image</h2>
+    </section>
+    <section>
+        <h2>Horizontal Resize Bar</h2>
+    </section>
+    <section>
+        <h2>Vertical Resize Bar</h2>
+    </section>
+    <section>
+        <h2>Bind as JQuery Plugin</h2>
+    </section>
+</main>
+
+<script src="./node_modules/prismjs/prism.js"></script>
 </body>
 </html>
